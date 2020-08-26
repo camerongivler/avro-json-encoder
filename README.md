@@ -39,8 +39,6 @@ Using this encoder, the output will instead be
 {"username":"user1","name":"my name"}
 ```
 
-The encoder allows skipping specifying nulls. Use with <a href="https://github.com/Celos/avro-json-decoder">avro-json-decoder</a>.
-
 ## how
 
 Replace
