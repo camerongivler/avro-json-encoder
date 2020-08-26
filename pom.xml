@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.camerongivler</groupId>
 	<artifactId>avro-json-encoder</artifactId>
+    <version>1.0</version>
 	<packaging>jar</packaging>
 	<name>avro-json-encoder</name>
 	<url>http://maven.apache.org</url>
@@ -35,7 +36,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.0</version>
+                <version>1.4</version>
                 <executions>
                 <execution>
                     <id>buildnumber</id>
@@ -67,14 +68,13 @@
                 </goals>
                 <configuration>
                     <script>
-                    $project.artifact.version = "${major.minor.version}.${buildNumber}";
+                        $project.artifact.version = "${major.minor.version}.${buildNumber}";
                     </script>
                 </configuration>
                 </execution>
             </executions>
             </plugin>    
 		</plugins>
-        <finalName>${project.artifactId}-${project.version}.${buildNumber}</finalName>
 	</build>
 
     <distributionManagement>
