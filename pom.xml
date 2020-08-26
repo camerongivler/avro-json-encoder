@@ -5,7 +5,6 @@
 	<groupId>com.camerongivler</groupId>
 	<artifactId>avro-json-encoder</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0</version>
 	<name>avro-json-encoder</name>
 	<url>http://maven.apache.org</url>
     <scm>
