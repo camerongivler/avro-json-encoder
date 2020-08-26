@@ -21,4 +21,8 @@ public class ExtendedJsonEncoder extends JsonEncoder implements Parser.ActionHan
 		Symbol symbol = top.getSymbol(unionIndex);
 		parser.pushSymbol(symbol);
 	}
+
+	public Parser getParser() {
+		return parser;
+	};
 }
