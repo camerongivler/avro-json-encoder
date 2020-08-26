@@ -4,16 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.camerongivler</groupId>
 	<artifactId>avro-json-encoder</artifactId>
-    <version>1.0.5</version>
+    <version>1.2</version>
 	<packaging>jar</packaging>
 	<name>avro-json-encoder</name>
 	<url>http://maven.apache.org</url>
-    <scm>
-        <connection>scm:svn:https://github.com/camerongivler/avro-json-encoder</connection>
-        <developerConnection>scm:svn:https://github.com/camerongivler/avro-json-encoder</developerConnection>
-        <tag>HEAD</tag>
-        <url>https://github.com/camerongivler/avro-json-encoder</url>
-    </scm>
 
 	<properties>
 		<avro.version>1.9.2</avro.version>
