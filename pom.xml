@@ -16,10 +16,9 @@
     </scm>
 	
 	<properties>
-        <version>3.1</version>
+        <major.minor.version>1.0</major.minor.version>
 		<avro.version>1.9.2</avro.version>
 		<junit.version>4.12</junit.version>
-
 	</properties>
 	
 	<build>
@@ -56,6 +55,24 @@
                 <doUpdate>false</doUpdate>
                 <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>   
                 </configuration>
+            </plugin>    
+            <plugin>
+            <groupId>io.github.michaldo</groupId>
+            <artifactId>nashorn-maven-plugin</artifactId>
+            <version>0.0.1</version>
+            <executions>
+                <execution>
+                <phase>validate</phase>
+                <goals>
+                    <goal>eval</goal>
+                </goals>
+                <configuration>
+                    <script>
+                    $project.artifact.version = "${major.minor.version}.${buildNumber}";
+                    </script>
+                </configuration>
+                </execution>
+            </executions>
             </plugin>    
 		</plugins>
         <finalName>${project.artifactId}-${project.version}.${buildNumber}</finalName>
