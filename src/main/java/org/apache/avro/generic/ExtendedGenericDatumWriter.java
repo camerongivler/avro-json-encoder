@@ -1,63 +1,55 @@
-package org.mihkel.avro.generic;
+package org.apache.avro.generic;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.avro.JsonProperties.Null;
+import com.fasterxml.jackson.databind.node.NullNode;
+
 import org.apache.avro.Schema;
-import org.apache.avro.generic.GenericData;
-import org.apache.avro.generic.GenericDatumWriter;
 import org.apache.avro.io.Encoder;
+import org.apache.avro.io.ExtendedJsonEncoder;
 import org.apache.avro.io.parsing.Parser;
 import org.apache.avro.io.parsing.Symbol;
-import org.codehaus.jackson.node.NullNode;
-import org.mihkel.avro.io.ExtendedJsonEncoder;
+import org.apache.avro.util.internal.JacksonUtils;
 
 public class ExtendedGenericDatumWriter<D> extends GenericDatumWriter<D> {
-	
+
 	public ExtendedGenericDatumWriter(final GenericData data) {
 		super(data);
 	}
-	
+
 	public ExtendedGenericDatumWriter(final Schema root) {
 		super(root);
 	}
-	
+
 	public ExtendedGenericDatumWriter(final Schema root, final GenericData data) {
 		super(root, data);
 	}
-	
-	private static final ThreadLocal<List<Symbol>> HOLDINGS = new ThreadLocal<List<Symbol>>() {
-		
-		@Override
-		protected List<Symbol> initialValue() {
-			return new ArrayList(8);
-		}
-		
-	};
-	
+
+	private static final ThreadLocal<List<Symbol>> HOLDINGS = ThreadLocal.withInitial(() -> new ArrayList<>(8));
+
 	/**
 	 * Overwritten to skip serializing fields that have default values.
 	 */
 	@Override
 	protected void writeField(final Object datum, final Schema.Field f, final Encoder out, final Object state)
-			throws IOException {
+		throws IOException {
 		GenericData data = getData();
-		Object defaultValue = f.defaultValue();
-		if (defaultValue instanceof Null || defaultValue instanceof NullNode) {
+		Object defaultValue = JacksonUtils.toJsonNode(f.defaultVal());
+		if (defaultValue instanceof NullNode) {
 			defaultValue = null;
 		}
 		Object value = data.getField(datum, f.name(), f.pos());
-		
+
 		if (Objects.equals(value, defaultValue) && out instanceof ExtendedJsonEncoder) {
 			skipNullField(((ExtendedJsonEncoder) out).getParser(), f);
 		} else {
 			super.writeField(datum, f, out, state);
 		}
 	}
-	
+
 	private void skipNullField(Parser parser, final Schema.Field f) throws IOException {
 		Symbol topSymbol = parser.topSymbol();
 		switch (topSymbol.kind) {
@@ -70,7 +62,7 @@ public class ExtendedGenericDatumWriter<D> extends GenericDatumWriter<D> {
 				if (nextSymbol instanceof Symbol.ImplicitAction) {
 					if (((Symbol.ImplicitAction) nextSymbol).isTrailing) {
 						throw new IllegalStateException("Cannot start with a trailing implicit"
-								+ topSymbol);
+														+ topSymbol);
 					} else {
 						parser.advance(nextSymbol);
 					}
@@ -87,8 +79,8 @@ public class ExtendedGenericDatumWriter<D> extends GenericDatumWriter<D> {
 			if (parser.depth() > 0) {
 				advanceTo = parser.popSymbol();
 				if (advanceTo instanceof Symbol.FieldAdjustAction
-						&& ((Symbol.FieldAdjustAction) advanceTo).fname.equals(f.name())
-						&& ((Symbol.FieldAdjustAction) advanceTo).rindex == f.pos()) {
+					&& ((Symbol.FieldAdjustAction) advanceTo).fname.equals(f.name())
+					&& ((Symbol.FieldAdjustAction) advanceTo).rindex == f.pos()) {
 					done = true;
 				}
 				holdings.add(advanceTo);

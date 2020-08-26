@@ -10,7 +10,7 @@
 	<url>http://maven.apache.org</url>
 	
 	<properties>
-		<avro.version>1.8.2</avro.version>
+		<avro.version>1.9.2</avro.version>
 		<junit.version>4.12</junit.version>
 	</properties>
 	
