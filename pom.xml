@@ -29,6 +29,14 @@
 		</plugins>
 	</build>
 
+    <distributionManagement>
+    <repository>
+        <id>github</id>
+        <name>GitHub camerongivler Apache Maven Packages</name>
+        <url>https://maven.pkg.github.com/camerongivler/avro-json-encoder</url>
+    </repository>
+    </distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.avro</groupId>
