@@ -23,6 +23,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Publish package
-      run: mvn -B deploy -Dversion=1.`git rev-list HEAD --count`
+      run: mvn -B deploy
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
