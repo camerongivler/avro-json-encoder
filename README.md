@@ -5,7 +5,7 @@ JSON encoder for AVRO that skips default values and serializes nullable unions a
 
 ## why
 
-Given this schema (in AVRO IDL)
+### Given this schema (in AVRO IDL)
 
 ```
 record User {
@@ -22,7 +22,7 @@ Using this encoder, the output will instead be
 {"username":"user1"}
 ```
 
-Given this schema (in AVRO IDL)
+### Given this schema (in AVRO IDL)
 
 ```
 record User {
