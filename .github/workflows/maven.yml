@@ -21,6 +21,8 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file pom.xml deploy
+      run: mvn -B package --file pom.xml
+    - name: Deploy
+      run: mvn -B deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

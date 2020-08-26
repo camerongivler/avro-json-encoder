@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.camerongivler</groupId>
 	<artifactId>avro-json-encoder</artifactId>
+    <version>1.0.5</version>
 	<packaging>jar</packaging>
 	<name>avro-json-encoder</name>
 	<url>http://maven.apache.org</url>
@@ -13,6 +14,11 @@
         <tag>HEAD</tag>
         <url>https://github.com/camerongivler/avro-json-encoder</url>
     </scm>
+
+	<properties>
+		<avro.version>1.9.2</avro.version>
+		<junit.version>4.12</junit.version>
+	</properties>
 	
 	<build>
 		<plugins>
@@ -26,40 +32,15 @@
 					<optimize>true</optimize>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <version>2.2.4</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>revision</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
-                    <generateGitPropertiesFile>false</generateGitPropertiesFile>
-                </configuration>
-            </plugin>
 		</plugins>
 	</build>
 
-	<properties>
-        <version.number>1.0.${git.commit.id.abbrev}</version.number>
-		<avro.version>1.9.2</avro.version>
-		<junit.version>4.12</junit.version>
-	</properties>
-	
-    <version>${version.number}</version>
-
     <distributionManagement>
-    <repository>
-        <id>github</id>
-        <name>GitHub camerongivler Apache Maven Packages</name>
-        <url>https://maven.pkg.github.com/camerongivler/avro-json-encoder</url>
-    </repository>
+        <repository>
+            <id>github</id>
+            <name>GitHub camerongivler Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/camerongivler/avro-json-encoder</url>
+        </repository>
     </distributionManagement>
 
 	<dependencies>
