@@ -12,6 +12,7 @@ import org.apache.avro.io.Encoder;
 import org.apache.avro.io.ExtendedJsonEncoder;
 import org.apache.avro.io.parsing.Parser;
 import org.apache.avro.io.parsing.Symbol;
+import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.internal.JacksonUtils;
 
 public class ExtendedGenericDatumWriter<D> extends GenericDatumWriter<D> {
@@ -26,6 +27,10 @@ public class ExtendedGenericDatumWriter<D> extends GenericDatumWriter<D> {
 
 	public ExtendedGenericDatumWriter(final Schema root, final GenericData data) {
 		super(root, data);
+	}
+
+	public ExtendedGenericDatumWriter(Class<D> c) {
+		super(SpecificData.get().getSchema(c), SpecificData.getForClass(c));
 	}
 
 	private static final ThreadLocal<List<Symbol>> HOLDINGS = ThreadLocal.withInitial(() -> new ArrayList<>(8));
