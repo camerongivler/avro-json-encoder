@@ -4,7 +4,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.camerongivler</groupId>
 	<artifactId>avro-json-encoder</artifactId>
-    <version>1.0.${git.commit.id.abbrev}</version>
 	<packaging>jar</packaging>
 	<name>avro-json-encoder</name>
 	<url>http://maven.apache.org</url>
@@ -53,6 +52,7 @@
 		<junit.version>4.12</junit.version>
 	</properties>
 	
+    <version>${version.number}</version>
 
     <distributionManagement>
     <repository>
