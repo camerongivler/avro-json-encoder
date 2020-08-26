@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.camerongivler</groupId>
 	<artifactId>avro-json-encoder</artifactId>
-    <version>1.0</version>
+    <version>1.0.${git.commit.id.abbrev}</version>
 	<packaging>jar</packaging>
 	<name>avro-json-encoder</name>
 	<url>http://maven.apache.org</url>
@@ -16,7 +16,6 @@
     </scm>
 	
 	<properties>
-        <major.minor.version>1.0</major.minor.version>
 		<avro.version>1.9.2</avro.version>
 		<junit.version>4.12</junit.version>
 	</properties>
@@ -33,47 +32,6 @@
 					<optimize>true</optimize>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>1.4</version>
-                <executions>
-                <execution>
-                    <id>buildnumber</id>
-                    <phase>validate</phase>
-                    <goals>
-                    <goal>create</goal>
-                    </goals>
-                </execution>
-                </executions>
-                <configuration>
-                <format>{0,number}</format>
-                <items>
-                    <item>buildNumber</item>
-                </items>                    
-                <doCheck>false</doCheck>
-                <doUpdate>false</doUpdate>
-                <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>   
-                </configuration>
-            </plugin>    
-            <plugin>
-            <groupId>io.github.michaldo</groupId>
-            <artifactId>nashorn-maven-plugin</artifactId>
-            <version>0.0.1</version>
-            <executions>
-                <execution>
-                <phase>validate</phase>
-                <goals>
-                    <goal>eval</goal>
-                </goals>
-                <configuration>
-                    <script>
-                        $project.artifact.version = "${major.minor.version}.${buildNumber}";
-                    </script>
-                </configuration>
-                </execution>
-            </executions>
-            </plugin>    
 		</plugins>
 	</build>
 
