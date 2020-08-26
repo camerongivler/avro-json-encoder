@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.mihkel</groupId>
+	<groupId>com.camerongivler</groupId>
 	<artifactId>avro-json-encoder</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0</version>
@@ -28,7 +28,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.avro</groupId>
