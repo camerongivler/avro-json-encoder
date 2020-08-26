@@ -8,9 +8,15 @@
 	<version>1.0</version>
 	<name>avro-json-encoder</name>
 	<url>http://maven.apache.org</url>
+    <scm>
+        <connection>scm:svn:https://github.com/camerongivler/avro-json-encoder</connection>
+        <developerConnection>scm:svn:https://github.com/camerongivler/avro-json-encoder</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/camerongivler/avro-json-encoder</url>
+    </scm>
 	
 	<properties>
-        <major.minor.version>1.0</major.minor.version>
+        <version>3.1</version>
 		<avro.version>1.9.2</avro.version>
 		<junit.version>4.12</junit.version>
 
@@ -29,24 +35,30 @@
 				</configuration>
 			</plugin>
             <plugin>
-            <groupId>io.github.michaldo</groupId>
-            <artifactId>nashorn-maven-plugin</artifactId>
-            <version>0.0.1</version>
-            <executions>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
                 <execution>
-                <phase>validate</phase>
-                <goals>
-                    <goal>eval</goal>
-                </goals>
-                <configuration>
-                    <script>
-                    $project.artifact.version = "${major.minor.version}.${buildNumber}";
-                    </script>
-                </configuration>
+                    <id>buildnumber</id>
+                    <phase>validate</phase>
+                    <goals>
+                    <goal>create</goal>
+                    </goals>
                 </execution>
-            </executions>
-            </plugin>   
+                </executions>
+                <configuration>
+                <format>{0,number}</format>
+                <items>
+                    <item>buildNumber</item>
+                </items>                    
+                <doCheck>false</doCheck>
+                <doUpdate>false</doUpdate>
+                <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>   
+                </configuration>
+            </plugin>    
 		</plugins>
+        <finalName>${project.artifactId}-${project.version}.${buildNumber}</finalName>
 	</build>
 
     <distributionManagement>
