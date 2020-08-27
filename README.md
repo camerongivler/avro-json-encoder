@@ -1,7 +1,5 @@
 # avro-json-encoder
-JSON encoder for AVRO that skips default values and serializes nullable unions as simply the value. Based on org.apache.avro.io.JsonEncoder from <a href="https://github.com/apache/avro">AVRO</a> 1.9.2 and org.apache.avro.io.ExtendedJsonEncoder by <a href="https://github.com/zolyfarkas/avro">zolyfarkas</a>.
-
-**This encoder is meant to be used with <a href="https://github.com/Celos/avro-json-decoder">avro-json-decoder</a> as it is capable of decoding Avro JSON with missing values.**
+JSON encoder and decode for AVRO that skips default values and serializes nullable unions as simply the value. Based on org.apache.avro.io.JsonEncoder from <a href="https://github.com/apache/avro">AVRO</a> 1.9.2 and org.apache.avro.io.ExtendedJsonEncoder by <a href="https://github.com/zolyfarkas/avro">zolyfarkas</a>.
 
 ## why
 
