@@ -50,7 +50,7 @@ publishing {
         create<MavenPublication>("avro-json-encoder") {
             groupId = "com.camerongivler"
             artifactId = "avro-json-encoder"
-            version = "1.4"
+            version = "1.5"
 
             from(components["java"])
         }
@@ -58,7 +58,7 @@ publishing {
     repositories {
         maven {
             url = uri("https://maven.pkg.github.com/camerongivler/avro-json-encoder")
-            version = "1.4"
+            version = "1.5"
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
